@@ -1,0 +1,4 @@
+baseURL = "https://riston.github.io/"
+languageCode = "en-us"
+title = "Risto's magic stuff"
+publishDir = "docs"
