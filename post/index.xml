@@ -20,5 +20,26 @@
       <description>sadsadsadsadsadsadsa</description>
     </item>
     
+    <item>
+      <title>Raspberry Pi surveillance camera with ML</title>
+      <link>https://riston.github.io/post/raspberry-pi-camera/</link>
+      <pubDate>Mon, 30 Jan 2017 22:20:41 +0300</pubDate>
+      
+      <guid>https://riston.github.io/post/raspberry-pi-camera/</guid>
+      <description>Raspberry PI has the most amazing hardware to create your own simple surveillance camera by combining free/open source software. My end goal is to make automated person/human detection and based on the detection send me an email or push notification with an image. Another important goal is to keep the whole solution based on open-source or free software components/services.
+Component list:
+ Raspberry PI - model A RaspberrryPI official noIR camera(tested also with USB cameras) Passive infrared sensor(PIR)  The flow begins with movement detection, there are roughly two ways for detection: hardware and software.</description>
+    </item>
+    
+    <item>
+      <title>Handling SQS queue with AWS Lambda</title>
+      <link>https://riston.github.io/post/lambda-sqs-handler/</link>
+      <pubDate>Sun, 11 Sep 2016 15:00:41 +0300</pubDate>
+      
+      <guid>https://riston.github.io/post/lambda-sqs-handler/</guid>
+      <description>Batch workers are one of the common patterns to separate more heavyweight data processing background jobs from the main application. That&amp;rsquo;s all great, but to do this you usually need to create a separate server/instance/container job for this and do the maintenance. This could be easily changed by using serverless architecture, provided by Azure, Google, Amazon etc.
+In this blog post, we are using specifically Amazon&amp;rsquo;s technology Lambda and SQS. Beside the Simple Queue Service there are also other similar purpose services:</description>
+    </item>
+    
   </channel>
 </rss>

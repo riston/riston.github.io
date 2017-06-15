@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Apex on Risto&#39;s magic stuff</title>
+    <link>https://riston.github.io/tags/apex/</link>
+    <description>Recent content in Apex on Risto&#39;s magic stuff</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 11 Sep 2016 15:00:41 +0300</lastBuildDate>
+    
+	<atom:link href="https://riston.github.io/tags/apex/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Handling SQS queue with AWS Lambda</title>
+      <link>https://riston.github.io/post/lambda-sqs-handler/</link>
+      <pubDate>Sun, 11 Sep 2016 15:00:41 +0300</pubDate>
+      
+      <guid>https://riston.github.io/post/lambda-sqs-handler/</guid>
+      <description>Batch workers are one of the common patterns to separate more heavyweight data processing background jobs from the main application. That&amp;rsquo;s all great, but to do this you usually need to create a separate server/instance/container job for this and do the maintenance. This could be easily changed by using serverless architecture, provided by Azure, Google, Amazon etc.
+In this blog post, we are using specifically Amazon&amp;rsquo;s technology Lambda and SQS. Beside the Simple Queue Service there are also other similar purpose services:</description>
+    </item>
+    
+  </channel>
+</rss>
