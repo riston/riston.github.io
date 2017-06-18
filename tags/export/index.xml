@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Export on Risto&#39;s magic stuff</title>
+    <link>https://riston.github.io/tags/export/</link>
+    <description>Recent content in Export on Risto&#39;s magic stuff</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 28 Aug 2016 17:46:41 +0300</lastBuildDate>
+    
+	<atom:link href="https://riston.github.io/tags/export/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Automating your SVG export</title>
+      <link>https://riston.github.io/post/automate-svg-export/</link>
+      <pubDate>Sun, 28 Aug 2016 17:46:41 +0300</pubDate>
+      
+      <guid>https://riston.github.io/post/automate-svg-export/</guid>
+      <description>Exporting could be a quite tedious manual work if you have to do it like 20+ times. Also, the GUI(graphical user interface) settings don&amp;rsquo;t change much, only press export button. With Native Mobile applications usually single size won&amp;rsquo;t be enough and you have to do it again usually in three different sizes. In this post let&amp;rsquo;s go through some alternative options to make exporting much easier.
+All the below techniques are used on SVG so if you have Adobe Illustrator content make sure you convert it to plain SVG before.</description>
+    </item>
+    
+  </channel>
+</rss>

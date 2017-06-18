@@ -20,7 +20,7 @@
     <title>Handling SQS queue with AWS Lambda - Risto&#39;s magic stuff</title>
     <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
     <script async src="https://cdn.ampproject.org/v0.js"></script>
-    
+    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
     
     
 <meta name="description" content="Basic example how to setup Simple Queue Service consumer based on AWS Lambda">
@@ -28,7 +28,7 @@
 <meta property="og:title" content="Handling SQS queue with AWS Lambda - Risto&#39;s magic stuff">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://riston.github.io/post/lambda-sqs-handler/">
-<meta property="og:image" content="https://riston.github.io/images/default.png">
+<meta property="og:image" content="https://riston.github.io/images/sqs/aws-sqs-logo.png">
 <meta property="og:site_name" content="Risto&#39;s magic stuff">
 <meta property="og:description" content="Basic example how to setup Simple Queue Service consumer based on AWS Lambda">
 <meta property="og:locale" content="ja_JP">
@@ -38,7 +38,7 @@
 <meta name="twitter:url" content="https://riston.github.io/post/lambda-sqs-handler/">
 <meta name="twitter:title" content="Handling SQS queue with AWS Lambda - Risto&#39;s magic stuff">
 <meta name="twitter:description" content="Basic example how to setup Simple Queue Service consumer based on AWS Lambda">
-<meta name="twitter:image" content="https://riston.github.io/images/default.png">
+<meta name="twitter:image" content="https://riston.github.io/images/sqs/aws-sqs-logo.png">
 
 
 <script type="application/ld+json">
@@ -52,7 +52,7 @@
     "headline": "Handling SQS queue with AWS Lambda - Risto&#39;s magic stuff",
     "image": {
       "@type": "ImageObject",
-      "url": "https://riston.github.io/images/default.png",
+      "url": "https://riston.github.io/images/sqs/aws-sqs-logo.png",
       "height": 800,
       "width": 800
     },
@@ -78,14 +78,30 @@
 
 
     <style amp-custom>
-      html { font-size: 18px;}@media (max-width: 768px) { html { font-size: 15px; }}body { font-family: Lato,'Hiragino Kaku Gothic Pro',メイリオ,Meiryo,sans-serif; font-size: inherit; margin: 0; color: #263238;}html, body { margin: 0;}a { text-decoration: none; color: #e91e63;}p { margin: 0;}ul,ol { margin: 0; padding: 0;}h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 700;}h1 { font-size: 1.8rem; line-height: 2rem; margin: 1.5rem 0; }h2 { font-size: 1.4rem; line-height: 2rem; margin: 1.5rem 0; }h3 { font-size: 1.2rem; line-height: 1.5rem; margin: 1.5rem 0; }h4, h5, h6 { font-size: 1rem; line-height: 1.5rem; margin: 1.5rem 0; }.clearfix::after { content: ''; display: block; clear: both;}main { display: block;}/* Layouts */.l-header { padding: .5rem 0; margin-bottom: 2rem; border-bottom: 1px dashed #cfd8dc; text-align: center;}.l-footer { font-size: .8rem; padding: 1rem 0; border-top: 1px dashed #cfd8dc;}.l-container { max-width: 42rem; margin: 0 auto; padding: 0 1rem;}/* Parts:logo */.p-logo { font-family: Lobster, cursive;}.p-logo a { color: #000; font-size: 1.6rem; line-height: 2rem;}/* Parts:section */section { border-top: 2px solid #eceff1; padding: 1.5rem 0;}section>header { text-transform: uppercase; font-weight: 700; margin-bottom: 2rem; text-align: center;}section>header span { display: inline-block; background-color: #000; color: #fff; letter-spacing: 3px; font-size: .7rem; padding: .5rem .75rem;}/* Parts:facts */.p-facts { list-style: none; font-size: .8rem; margin-bottom: 1rem;}.p-facts:last-child { margin-bottom: 0;}.p-facts li { display: inline-block; margin-right: .5rem; text-transform: uppercase;}.p-facts li header { margin-bottom: .25rem; font-weight: 700;}.p-facts li header a { color: #000; text-decoration: underline;}.p-facts li li { display: inline-block; margin-right: .5rem;}.p-facts li li::after { content: ',';}.p-facts li li:last-child::after { content: '';}/* Parts:crumb */.p-crumb { list-style: none; margin-bottom: 1rem; font-size: .8rem; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}.p-crumb:last-child { margin-bottom: 0;}.p-crumb li { display: inline;}.p-crumb li::after { content: '›'; margin: 0 .5rem;}.p-crumb li:last-child::after { content: '';}/* Parts:page-title */.p-page-title { margin-bottom: 2rem;}.p-page-title .title { margin-bottom: .5rem;}/* Parts:share */.p-share { margin-bottom: 1.5rem;}.p-share a { display: inline-block; text-align: center; padding: .5rem .5rem; margin-right: .25rem; font-size: .6rem; background-color: #eceff1; font-weight: 700k}.p-share a.ht { color: #00a4de; }.p-share a.fb { color: #3b5998; }.p-share a.tw { color: #1da1f2; }.p-share a.gp { color: #dd4b39; }.p-share a.ln { color: #00c300; }.p-share a.ht::before { content: 'Hatena'; }.p-share a.fb::before { content: 'Facebook'; }.p-share a.tw::before { content: 'Twitter'; }.p-share a.gp::before { content: 'Google+'; }.p-share a.ln::before { content: 'LINE'; }/* Parts:terms */.p-terms { padding-left: 2rem;}/* Parts:paginator */.p-paginator { text-align: center; margin-bottom: 3rem; padding-top: 2rem;}.p-paginator a { display: inline-block; border: 2px solid #eceff1; color: #263238; line-height: 2rem; padding: 0 1rem;}/* Parts:article */.p-articles { list-style: none;}.p-articles>li { margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px dashed #cfd8dc;}.p-articles>li:last-child { border-bottom: none; padding-bottom: 0;}.p-articles.thin>li { margin-bottom: 1rem; padding-bottom: 1rem;}article .article-header { display: table-cell; height: 6rem; vertical-align: middle;}article .title { margin: 0; margin-bottom: .5rem; font-size: 1.4rem; line-height: 2rem;}article .title a { color: #000;}article .header-wrapper { margin-bottom: 1.5rem;}article .thumbnail { display: block; background-position: center; background-size: cover; background-image: url(https://riston.github.io/images/default.jpg); width: 6rem; height: 6rem; border-radius: 50%; box-shadow: 0 0 3px 0 #333 inset; float: left; margin-right: 1rem;}article .summary { margin-bottom: 1.5rem;}article .readmore { text-align: center;}article .readmore a { font-size: .8rem; color: #000; text-decoration: underline;}article.li.sm .header-wrapper { margin-bottom: 0;}.article-body h2 { padding: 1rem 0; border-bottom: 2px solid #eceff1;}.article-body h2:first-child { margin-top: 0; }.article-body h3 { color: #cddc39;}.article-body h4 { border-left: solid .25rem #cddc39; padding: 0 .5rem;}.article-body p { margin: 1.5rem 0; line-height: 1.5rem;}.article-body a { text-decoration: underline;}.article-body ul,.article-body ol { padding-left: 1.5rem;}.article-body code { display: inline-block; font-family: Menlo, consolas, monospace; background-color: #eceff1; font-size: .8rem; padding: 0 .5rem; line-height: 1.5rem;}.article-body pre { margin: 1.5rem 0; padding: 1.5rem; font-size: .8rem; background-color: #263238; color: #fff; overflow: auto;}.article-body pre code { background-color: transparent;}.article-body blockquote { margin: 1.5rem 0; padding: .5rem 0; font-size: .8rem; border-top: 1px solid #eceff1; border-bottom: 1px solid #eceff1; color: #607d8b;}.article-body blockquote p { margin: .5rem 0; line-height: 1rem;}.article-body strong { box-shadow: 0 -.5rem 0 0 #f06292 inset;}.article-body em { font-style: normal; font-weight: 700; color: #ff5722;}.article-body figure { margin: 1.5rem -2rem; }.article-body figure.left,.article-body figure.right { width: 15rem; height: 12rem; margin-top: 0; margin-left: 0; margin-right: 0;}.article-body figure.left { float: left; margin-right: 1rem; margin-left: -2rem; }.article-body figure.right { float: right; margin-left: 1rem; margin-right: -2rem; }@media (max-width: 768px) { .article-body figure { margin: 1.5rem -1rem; } .article-body figure.left, .article-body figure.right { float: none; margin: 0 -1rem; width: auto; height: auto; }}.article-body figcaption { padding: .5rem 0; font-size: .8rem; text-align: center;}.article-body figcaption a { color: #263238;}
+      html { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.5;}@media (min-width: 38em) { html { font-size: 20px; }}html, body { margin: 0;}a { text-decoration: none; color: #e91e63;}p { margin: 0;}ul,ol { margin: 0; padding: 0;}h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 700;}h1 { font-size: 1.8rem; line-height: 2rem; margin: 1.5rem 0; }h2 { font-size: 1.4rem; line-height: 2rem; margin: 1.5rem 0; }h3 { font-size: 1.2rem; line-height: 1.5rem; margin: 1.5rem 0; }h4, h5, h6 { font-size: 1rem; line-height: 1.5rem; margin: 1.5rem 0; }.clearfix::after { content: ''; display: block; clear: both;}main { display: block;}/* Layouts */.l-header { padding: .5rem 0; margin-bottom: 2rem; border-bottom: 1px dashed #cfd8dc; text-align: center;}.l-footer { font-size: .8rem; padding: 1rem 0; border-top: 1px dashed #cfd8dc;}.l-container { max-width: 42rem; margin: 0 auto; padding: 0 1rem;}/* Parts:logo */.p-logo { font-family: Lobster, cursive;}.p-logo a { color: #000; font-size: 1.6rem; line-height: 2rem;}/* Parts:section */section { border-top: 2px solid #eceff1; padding: 1.5rem 0;}section>header { text-transform: uppercase; font-weight: 700; margin-bottom: 2rem; text-align: center;}section>header span { display: inline-block; background-color: #000; color: #fff; letter-spacing: 3px; font-size: .7rem; padding: .5rem .75rem;}/* Parts:facts */.p-facts { list-style: none; font-size: .8rem; margin-bottom: 1rem;}.p-facts:last-child { margin-bottom: 0;}.p-facts li { display: inline-block; margin-right: .5rem; text-transform: uppercase;}.p-facts li header { margin-bottom: .25rem; font-weight: 700;}.p-facts li header a { color: #000; text-decoration: underline;}.p-facts li li { display: inline-block; margin-right: .5rem;}.p-facts li li::after { content: ',';}.p-facts li li:last-child::after { content: '';}/* Parts:crumb */.p-crumb { list-style: none; margin-bottom: 1rem; font-size: .8rem; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}.p-crumb:last-child { margin-bottom: 0;}.p-crumb li { display: inline;}.p-crumb li::after { content: '›'; margin: 0 .5rem;}.p-crumb li:last-child::after { content: '';}/* Parts:page-title */.p-page-title { margin-bottom: 2rem;}.p-page-title .title { margin-bottom: .5rem;}/* Parts:share */.p-share { margin-bottom: 1.5rem;}.p-share a { display: inline-block; text-align: center; padding: .5rem .5rem; margin-right: .25rem; font-size: .6rem; background-color: #eceff1; font-weight: 700k}.p-share a.ht { color: #00a4de; }.p-share a.fb { color: #3b5998; }.p-share a.tw { color: #1da1f2; }.p-share a.gp { color: #dd4b39; }.p-share a.ln { color: #00c300; }.p-share a.ht::before { content: 'Hatena'; }.p-share a.fb::before { content: 'Facebook'; }.p-share a.tw::before { content: 'Twitter'; }.p-share a.gp::before { content: 'Google+'; }.p-share a.ln::before { content: 'LINE'; }/* Parts:terms */.p-terms { padding-left: 2rem;}/* Parts:paginator */.p-paginator { text-align: center; margin-bottom: 3rem; padding-top: 2rem;}.p-paginator a { display: inline-block; border: 2px solid #eceff1; color: #263238; line-height: 2rem; padding: 0 1rem;}/* Parts:article */.p-articles { list-style: none;}.p-articles>li { margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px dashed #cfd8dc;}.p-articles>li:last-child { border-bottom: none; padding-bottom: 0;}.p-articles.thin>li { margin-bottom: 1rem; padding-bottom: 1rem;}article .article-header { display: table-cell; height: 6rem; vertical-align: middle;}article .title { margin: 0; margin-bottom: .5rem; font-size: 1.4rem; line-height: 2rem;}article .title a { color: #000;}article .header-wrapper { margin-bottom: 1.5rem;}article .thumbnail { display: block; background-position: center; background-size: cover; background-image: url(https://riston.github.io/images/default.jpg); width: 6rem; height: 6rem; border-radius: 50%; box-shadow: 0 0 3px 0 #333 inset; float: left; margin-right: 1rem;}article .summary { margin-bottom: 1.5rem;}article .readmore { text-align: center;}article .readmore a { font-size: .8rem; color: #000; text-decoration: underline;}article.li.sm .header-wrapper { margin-bottom: 0;}.article-body h2 { padding: 1rem 0; border-bottom: 2px solid #eceff1;}.article-body h2:first-child { margin-top: 0; }.article-body h3 { color: #cddc39;}.article-body h4 { border-left: solid .25rem #cddc39; padding: 0 .5rem;}.article-body p { margin: 1.5rem 0; line-height: 1.5rem;}.article-body a { text-decoration: underline;}.article-body ul,.article-body ol { padding-left: 1.5rem;}.article-body code { display: inline-block; font-family: Menlo, consolas, monospace; background-color: #eceff1; font-size: .8rem; padding: 0 .5rem; line-height: 1.5rem;}.article-body pre { margin: 1.5rem 0; padding: 1.5rem; font-size: .8rem; background-color: #263238; color: #fff; overflow: auto;}.article-body pre code { background-color: transparent;}.article-body blockquote { margin: 1.5rem 0; padding: .5rem 0; font-size: .8rem; border-top: 1px solid #eceff1; border-bottom: 1px solid #eceff1; color: #607d8b;}.article-body blockquote p { margin: .5rem 0; line-height: 1rem;}.article-body strong { box-shadow: 0 -.5rem 0 0 #f06292 inset;}.article-body em { font-style: normal; font-weight: 700; color: #ff5722;}.article-body figure { margin: 1.5rem -2rem; }.article-body figure.left,.article-body figure.right { width: 15rem; height: 12rem; margin-top: 0; margin-left: 0; margin-right: 0;}.article-body figure.left { float: left; margin-right: 1rem; margin-left: -2rem; }.article-body figure.right { float: right; margin-left: 1rem; margin-right: -2rem; }@media (max-width: 768px) { .article-body figure { margin: 1.5rem -1rem; } .article-body figure.left, .article-body figure.right { float: none; margin: 0 -1rem; width: auto; height: auto; }}.article-body figcaption { padding: .5rem 0; font-size: .8rem; text-align: center;}.article-body figcaption a { color: #263238;}
 
-      
+       .article-579a1b344cd8d0eb5d918a0f2e5766f3 .thumbnail { background-image: url(https://riston.github.io/images/raspberry-pi-camera/pi-logo.png);  }  .article-6301fa6dfaebdab687da349ee15c6947 .thumbnail { background-image: url(https://riston.github.io/images/sqs/aws-sqs-logo.png);  } 
     </style>
   </head>
 
   <body>
     
+    
+    <amp-analytics type="googleanalytics" id="analytics1">
+      <script type="application/json">
+        {
+          "vars": {
+            "account": "UA-83139256-1"
+          },
+          "triggers": {
+            "trackPageview": {
+              "on": "visible",
+              "request": "pageview"
+            }
+          }
+        }
+      </script>
+    </amp-analytics>
     
     
 
@@ -116,11 +132,9 @@
   </div>
 
   <aside class="p-share">
-  <a href="http://b.hatena.ne.jp/add?mode=confirm&url=https%3a%2f%2friston.github.io%2fpost%2flambda-sqs-handler%2f&title=Handling%20SQS%20queue%20with%20AWS%20Lambda" title="はてなブックマーク" class="ht" target="_blank" rel="nofollow"></a>
-  <a href="http://www.facebook.com/sharer.php?u=https%3a%2f%2friston.github.io%2fpost%2flambda-sqs-handler%2f&t=Handling%20SQS%20queue%20with%20AWS%20Lambda" title="Facebookでシェア" class="fb" target="_blank" rel="nofollow"></a>
-  <a href="http://twitter.com/intent/tweet?url=https%3a%2f%2friston.github.io%2fpost%2flambda-sqs-handler%2f&text=Handling%20SQS%20queue%20with%20AWS%20Lambda&tw_p=tweetbutton" title="Twitterでシェア" class="tw" target="_blank" rel="nofollow"></a>
-  <a href="https://plus.google.com/share?url=https%3a%2f%2friston.github.io%2fpost%2flambda-sqs-handler%2f" title="Google Plusでシェア" class="gp" target="_blank" rel="nofollow"></a>
-  <a href="http://line.me/R/msg/text/?Handling%20SQS%20queue%20with%20AWS%20Lambda https%3a%2f%2friston.github.io%2fpost%2flambda-sqs-handler%2f" title="LINEでシェア" class="ln" target="_blank" rel="nofollow"></a>
+  <a href="http://www.facebook.com/sharer.php?u=https%3a%2f%2friston.github.io%2fpost%2flambda-sqs-handler%2f&t=Handling%20SQS%20queue%20with%20AWS%20Lambda" title="Facebook" class="fb" target="_blank" rel="nofollow"></a>
+  <a href="http://twitter.com/intent/tweet?url=https%3a%2f%2friston.github.io%2fpost%2flambda-sqs-handler%2f&text=Handling%20SQS%20queue%20with%20AWS%20Lambda&tw_p=tweetbutton" title="Twitter" class="tw" target="_blank" rel="nofollow"></a>
+  <a href="https://plus.google.com/share?url=https%3a%2f%2friston.github.io%2fpost%2flambda-sqs-handler%2f" title="Google Plus" class="gp" target="_blank" rel="nofollow"></a>
 </aside>
 
 
@@ -142,115 +156,116 @@
 
 <p>The queue consumer flow is split into separate module ~110LOC:</p>
 
-<pre><code>&quot;use strict&quot;;
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #e6db74">&quot;use strict&quot;</span><span style="color: #f8f8f2">;</span>
 
-const R        = require(&quot;ramda&quot;);
-const AWS      = require(&quot;aws-sdk&quot;);
-const PromiseB = require(&quot;bluebird&quot;);
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">R</span>        <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;ramda&quot;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">AWS</span>      <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;aws-sdk&quot;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">PromiseB</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;bluebird&quot;</span><span style="color: #f8f8f2">);</span>
 
-const cop = PromiseB.coroutine;
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">cop</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">PromiseB</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">coroutine</span><span style="color: #f8f8f2">;</span>
 
-const defaultOptions = {
-    queueURL:            &quot;https://sqs.us-east-1.amazonaws.com/get-from-AWS&quot;,
-    lambdaName:          &quot;your-lambda-function-name&quot;,
-    region:              &quot;us-east-1&quot;,
-    maxNumberOfMessages: 10,
-    visibilityTimeout:   10,
-    waitTimeSeconds:     20,
-};
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">defaultOptions</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">queueURL</span><span style="color: #f92672">:</span>            <span style="color: #e6db74">&quot;https://sqs.us-east-1.amazonaws.com/get-from-AWS&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">lambdaName</span><span style="color: #f92672">:</span>          <span style="color: #e6db74">&quot;your-lambda-function-name&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">region</span><span style="color: #f92672">:</span>              <span style="color: #e6db74">&quot;us-east-1&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">maxNumberOfMessages</span><span style="color: #f92672">:</span> <span style="color: #ae81ff">10</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">visibilityTimeout</span><span style="color: #f92672">:</span>   <span style="color: #ae81ff">10</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">waitTimeSeconds</span><span style="color: #f92672">:</span>     <span style="color: #ae81ff">20</span><span style="color: #f8f8f2">,</span>
+<span style="color: #f8f8f2">};</span>
 
-const defaultExecuteFn = message =&gt; {
-    return new PromiseB((resolve, reject) =&gt; {
-        console.log(&quot;NOOP execute function, executed &quot;, message);
-        return resolve(message);
-    });
-};
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">defaultExecuteFn</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">message</span> <span style="color: #f8f8f2">=&gt;</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">PromiseB</span><span style="color: #f8f8f2">((</span><span style="color: #a6e22e">resolve</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">reject</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">=&gt;</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;NOOP execute function, executed &quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">message</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">resolve</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">message</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">});</span>
+<span style="color: #f8f8f2">};</span>
 
-const formatMessages = R.map(m =&gt; ({
-    Id:            R.prop(&quot;MessageId&quot;, m),
-    ReceiptHandle: R.prop(&quot;ReceiptHandle&quot;, m),
-}));
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">formatMessages</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">R</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">map</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">m</span> <span style="color: #f8f8f2">=&gt;</span> <span style="color: #f8f8f2">({</span>
+    <span style="color: #a6e22e">Id</span><span style="color: #f92672">:</span>            <span style="color: #a6e22e">R</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">prop</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;MessageId&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">m</span><span style="color: #f8f8f2">),</span>
+    <span style="color: #a6e22e">ReceiptHandle</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">R</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">prop</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;ReceiptHandle&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">m</span><span style="color: #f8f8f2">),</span>
+<span style="color: #f8f8f2">}));</span>
 
 
-function Queue (options, executeFn) {
-    this.executeFn = executeFn || defaultExecuteFn;
-    this.options   = R.merge(defaultOptions, options);
-    console.log(&quot;End values&quot;, this.options, options);
+<span style="color: #66d9ef">function</span> <span style="color: #a6e22e">Queue</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">options</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">executeFn</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">executeFn</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">executeFn</span> <span style="color: #f92672">||</span> <span style="color: #a6e22e">defaultExecuteFn</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">options</span>   <span style="color: #f92672">=</span> <span style="color: #a6e22e">R</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">merge</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">defaultOptions</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">options</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;End values&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">options</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">options</span><span style="color: #f8f8f2">);</span>
 
-    const sqsParams = {
-        apiVersion: &quot;2012-11-05&quot;,
-        region:     this.options.region,
-    };
-    this.SQS = new AWS.SQS(sqsParams);
+    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">sqsParams</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #a6e22e">apiVersion</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;2012-11-05&quot;</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #a6e22e">region</span><span style="color: #f92672">:</span>     <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">options</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">region</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #f8f8f2">};</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">SQS</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">AWS</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">SQS</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">sqsParams</span><span style="color: #f8f8f2">);</span>
 
-    const lambdaParams = {
-        apiVersion: &quot;2015-03-31&quot;,
-        region:     this.options.region,
-    };
-    this.lambda = new AWS.Lambda(lambdaParams);
-};
+    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">lambdaParams</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #a6e22e">apiVersion</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;2015-03-31&quot;</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #a6e22e">region</span><span style="color: #f92672">:</span>     <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">options</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">region</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #f8f8f2">};</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">lambda</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">AWS</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Lambda</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">lambdaParams</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">};</span>
 
-Queue.prototype.poll = cop(function* () {
-    console.log(&quot;Started polling&quot;);
-    const queueResult = yield this.getMessages();
+<span style="color: #a6e22e">Queue</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">prototype</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">poll</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">cop</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span><span style="color: #f92672">*</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Started polling&quot;</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">queueResult</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">yield</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">getMessages</span><span style="color: #f8f8f2">();</span>
 
-    const messages = R.pathOr([], [&quot;Messages&quot;], queueResult);
-    console.log(&quot;Received messages &quot;, messages);
+    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">messages</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">R</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pathOr</span><span style="color: #f8f8f2">([],</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&quot;Messages&quot;</span><span style="color: #f8f8f2">],</span> <span style="color: #a6e22e">queueResult</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Received messages &quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">messages</span><span style="color: #f8f8f2">);</span>
 
-    // Execute function
-    const promises = messages.map(this.executeFn);
+    <span style="color: #75715e">// Execute function</span>
+    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">promises</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">messages</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">map</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">executeFn</span><span style="color: #f8f8f2">);</span>
 
-    // Filter out the fulfilled promises
-    const messageValues = yield PromiseB.all(promises.map(p =&gt; p.reflect()))
-        .filter(inspect =&gt; inspect.isFulfilled())
-        .map(inspect =&gt; inspect.value());
+    <span style="color: #75715e">// Filter out the fulfilled promises</span>
+    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">messageValues</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">yield</span> <span style="color: #a6e22e">PromiseB</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">all</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">promises</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">map</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">p</span> <span style="color: #f8f8f2">=&gt;</span> <span style="color: #a6e22e">p</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">reflect</span><span style="color: #f8f8f2">()))</span>
+        <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">filter</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">inspect</span> <span style="color: #f8f8f2">=&gt;</span> <span style="color: #a6e22e">inspect</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">isFulfilled</span><span style="color: #f8f8f2">())</span>
+        <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">map</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">inspect</span> <span style="color: #f8f8f2">=&gt;</span> <span style="color: #a6e22e">inspect</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">value</span><span style="color: #f8f8f2">());</span>
 
-    // Remove from queue only fulfilled messages
-    if (messageValues.length &gt; 0) {
-        console.log(&quot;Remove messages&quot;);
-        yield this.removeFromQueue(messageValues);
-    }
+    <span style="color: #75715e">// Remove from queue only fulfilled messages</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">messageValues</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span> <span style="color: #f92672">&gt;</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Remove messages&quot;</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #66d9ef">yield</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">removeFromQueue</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">messageValues</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span>
 
-    // NB! No yield here also notice the InvocationType: &quot;Event&quot;
-    return this.recursiveCall();
-});
+    <span style="color: #75715e">// NB! No yield here also notice the InvocationType: &quot;Event&quot;</span>
+    <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">recursiveCall</span><span style="color: #f8f8f2">();</span>
+<span style="color: #f8f8f2">});</span>
 
-Queue.prototype.getMessages = function () {
-    const params = {
-        QueueUrl:            this.options.queueURL,
-        MaxNumberOfMessages: this.options.maxNumberOfMessages,
-        VisibilityTimeout:   this.options.visibilityTimeout,
-        WaitTimeSeconds:     this.options.waitTimeSeconds,
-    };
+<span style="color: #a6e22e">Queue</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">prototype</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">getMessages</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">params</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #a6e22e">QueueUrl</span><span style="color: #f92672">:</span>            <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">options</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">queueURL</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #a6e22e">MaxNumberOfMessages</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">options</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">maxNumberOfMessages</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #a6e22e">VisibilityTimeout</span><span style="color: #f92672">:</span>   <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">options</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">visibilityTimeout</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #a6e22e">WaitTimeSeconds</span><span style="color: #f92672">:</span>     <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">options</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">waitTimeSeconds</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #f8f8f2">};</span>
 
-    return this.SQS.receiveMessage(params)
-        .promise();
-};
+    <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">SQS</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">receiveMessage</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">params</span><span style="color: #f8f8f2">)</span>
+        <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">promise</span><span style="color: #f8f8f2">();</span>
+<span style="color: #f8f8f2">};</span>
 
-Queue.prototype.removeFromQueue = function (messages) {
-    const params = {
-        // Format the messages as only ID and receipt are needed
-        QueueUrl: this.options.queueURL,
-        Entries: formatMessages(messages),
-    };
+<span style="color: #a6e22e">Queue</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">prototype</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">removeFromQueue</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">messages</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">params</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #75715e">// Format the messages as only ID and receipt are needed</span>
+        <span style="color: #a6e22e">QueueUrl</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">options</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">queueURL</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #a6e22e">Entries</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">formatMessages</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">messages</span><span style="color: #f8f8f2">),</span>
+    <span style="color: #f8f8f2">};</span>
 
-    return this.SQS.deleteMessageBatch(params)
-        .promise();
-};
+    <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">SQS</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">deleteMessageBatch</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">params</span><span style="color: #f8f8f2">)</span>
+        <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">promise</span><span style="color: #f8f8f2">();</span>
+<span style="color: #f8f8f2">};</span>
 
-Queue.prototype.recursiveCall = function () {
-    const params = {
-        FunctionName: this.options.lambdaName,
-        InvocationType: &quot;Event&quot;,
-    };
+<span style="color: #a6e22e">Queue</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">prototype</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">recursiveCall</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">params</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #a6e22e">FunctionName</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">options</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">lambdaName</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #a6e22e">InvocationType</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;Event&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #f8f8f2">};</span>
 
-    return this.lambda
-        .invoke(params)
-        .promise();
-};
+    <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">lambda</span>
+        <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">invoke</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">params</span><span style="color: #f8f8f2">)</span>
+        <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">promise</span><span style="color: #f8f8f2">();</span>
+<span style="color: #f8f8f2">};</span>
 
-module.exports = Queue;
-</code></pre>
+<span style="color: #a6e22e">module</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">exports</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Queue</span><span style="color: #f8f8f2">;</span>
+</pre></div>
+
 
 <p>The most interesting part is the <code>poll</code> function, here is the high-level view of the flow:</p>
 
@@ -264,35 +279,36 @@ module.exports = Queue;
 
 <p>The Lambda function&rsquo;s code is quite small, mostly contains the settings and queue handling function.</p>
 
-<pre><code class="language-js">const PromiseB = require(&quot;bluebird&quot;);
-const SQSQueue = require(&quot;./sqs-queue&quot;);
+<p><div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #66d9ef">const</span> <span style="color: #a6e22e">PromiseB</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;bluebird&quot;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">SQSQueue</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;./sqs-queue&quot;</span><span style="color: #f8f8f2">);</span>
 
-const options = {
-    queueURL:   process.env.QUEUE_URL,
-    lambdaName: process.env.LAMBDA_FUNCTION_NAME,
-    regions:    process.env.AWS_REGION,
-};
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">options</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">queueURL</span><span style="color: #f92672">:</span>   <span style="color: #a6e22e">process</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">env</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">QUEUE_URL</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">lambdaName</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">process</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">env</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">LAMBDA_FUNCTION_NAME</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">regions</span><span style="color: #f92672">:</span>    <span style="color: #a6e22e">process</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">env</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">AWS_REGION</span><span style="color: #f8f8f2">,</span>
+<span style="color: #f8f8f2">};</span>
 
-// Here is the function you need replace with whatever job you would execute
-const executeFn = message =&gt; {
-    return new PromiseB((resolve, reject) =&gt; {
-        console.log(&quot;My exec &quot;, message);
-        return resolve(message);
-    });
-};
+<span style="color: #75715e">// Here is the function you need replace with whatever job you would execute</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">executeFn</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">message</span> <span style="color: #f8f8f2">=&gt;</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">PromiseB</span><span style="color: #f8f8f2">((</span><span style="color: #a6e22e">resolve</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">reject</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">=&gt;</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;My exec &quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">message</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">resolve</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">message</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">});</span>
+<span style="color: #f8f8f2">};</span>
 
-// Create a queue instance
-const queue = new SQSQueue(options, executeFn);
+<span style="color: #75715e">// Create a queue instance</span>
+<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">queue</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">SQSQueue</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">options</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">executeFn</span><span style="color: #f8f8f2">);</span>
 
-exports.handle = function (e, ctx, cb) {
-    return queue.poll()
-        .then(() =&gt; ctx.succeed({ done: true }))
-        .catch(err =&gt; {
-            console.error(err);
-            ctx.fail(err);
-        });
-}
-</code></pre>
+<span style="color: #a6e22e">exports</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">handle</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">e</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">ctx</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">cb</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">queue</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">poll</span><span style="color: #f8f8f2">()</span>
+        <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">then</span><span style="color: #f8f8f2">(()</span> <span style="color: #f8f8f2">=&gt;</span> <span style="color: #a6e22e">ctx</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">succeed</span><span style="color: #f8f8f2">({</span> <span style="color: #a6e22e">done</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">true</span> <span style="color: #f8f8f2">}))</span>
+        <span style="color: #f8f8f2">.</span><span style="color: #66d9ef">catch</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">err</span> <span style="color: #f8f8f2">=&gt;</span> <span style="color: #f8f8f2">{</span>
+            <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">error</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">err</span><span style="color: #f8f8f2">);</span>
+            <span style="color: #a6e22e">ctx</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fail</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">err</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #f8f8f2">});</span>
+<span style="color: #f8f8f2">}</span>
+</pre></div>
+</p>
 
 <p>That&rsquo;s all amazing, but how do you stop the job if it&rsquo;s recursively calling the Lambda function again? Good question, currently there isn&rsquo;t such mechanism implemented. One possible solution would be to use special SQS message with a payload that could be identified and then stop next function call. Currently, you have to delete the Lambda function and redeploy when needed which isn&rsquo;t hard with Apex <code>apex deploy sqs-queue-handler</code> and <code>apex delete sqs-queue-handler</code>.</p>
 
@@ -312,11 +328,9 @@ exports.handle = function (e, ctx, cb) {
 </div>
 
   <aside class="p-share">
-  <a href="http://b.hatena.ne.jp/add?mode=confirm&url=https%3a%2f%2friston.github.io%2fpost%2flambda-sqs-handler%2f&title=Handling%20SQS%20queue%20with%20AWS%20Lambda" title="はてなブックマーク" class="ht" target="_blank" rel="nofollow"></a>
-  <a href="http://www.facebook.com/sharer.php?u=https%3a%2f%2friston.github.io%2fpost%2flambda-sqs-handler%2f&t=Handling%20SQS%20queue%20with%20AWS%20Lambda" title="Facebookでシェア" class="fb" target="_blank" rel="nofollow"></a>
-  <a href="http://twitter.com/intent/tweet?url=https%3a%2f%2friston.github.io%2fpost%2flambda-sqs-handler%2f&text=Handling%20SQS%20queue%20with%20AWS%20Lambda&tw_p=tweetbutton" title="Twitterでシェア" class="tw" target="_blank" rel="nofollow"></a>
-  <a href="https://plus.google.com/share?url=https%3a%2f%2friston.github.io%2fpost%2flambda-sqs-handler%2f" title="Google Plusでシェア" class="gp" target="_blank" rel="nofollow"></a>
-  <a href="http://line.me/R/msg/text/?Handling%20SQS%20queue%20with%20AWS%20Lambda https%3a%2f%2friston.github.io%2fpost%2flambda-sqs-handler%2f" title="LINEでシェア" class="ln" target="_blank" rel="nofollow"></a>
+  <a href="http://www.facebook.com/sharer.php?u=https%3a%2f%2friston.github.io%2fpost%2flambda-sqs-handler%2f&t=Handling%20SQS%20queue%20with%20AWS%20Lambda" title="Facebook" class="fb" target="_blank" rel="nofollow"></a>
+  <a href="http://twitter.com/intent/tweet?url=https%3a%2f%2friston.github.io%2fpost%2flambda-sqs-handler%2f&text=Handling%20SQS%20queue%20with%20AWS%20Lambda&tw_p=tweetbutton" title="Twitter" class="tw" target="_blank" rel="nofollow"></a>
+  <a href="https://plus.google.com/share?url=https%3a%2f%2friston.github.io%2fpost%2flambda-sqs-handler%2f" title="Google Plus" class="gp" target="_blank" rel="nofollow"></a>
 </aside>
 
 
@@ -364,22 +378,7 @@ exports.handle = function (e, ctx, cb) {
   <section>
     <header><span>Latests</span></header>
     <ul class="p-articles thin">
-      <li><article class="li sm article-7f4ea48311c8749b1ba26f4cd582863f">
-  <div class="header-wrapper">
-    <a href="https://riston.github.io/post/headless-chrome-scrape/" class="thumbnail" title="headless chrome scrape"></a>
-    <header class="article-header">
-      <div class="clearfix">
-        <h2 class="title"><a href="https://riston.github.io/post/headless-chrome-scrape/">headless chrome scrape</a></h2>
-        <ul class="p-facts">
-          <li><time datetime="2017-06-14T23:50:32JST">Jun 14, 2017</time></li>
-          <li><a href="https://riston.github.io/post/">post</a></li>
-          
-        </ul>
-      </div>
-    </header>
-  </div>
-</article>
-</li><li><article class="li sm article-579a1b344cd8d0eb5d918a0f2e5766f3">
+      <li><article class="li sm article-579a1b344cd8d0eb5d918a0f2e5766f3">
   <div class="header-wrapper">
     <a href="https://riston.github.io/post/raspberry-pi-camera/" class="thumbnail" title="Raspberry Pi surveillance camera with ML"></a>
     <header class="article-header">
@@ -387,6 +386,21 @@ exports.handle = function (e, ctx, cb) {
         <h2 class="title"><a href="https://riston.github.io/post/raspberry-pi-camera/">Raspberry Pi surveillance camera with ML</a></h2>
         <ul class="p-facts">
           <li><time datetime="2017-01-30T22:20:41JST">Jan 30, 2017</time></li>
+          <li><a href="https://riston.github.io/post/">post</a></li>
+          
+        </ul>
+      </div>
+    </header>
+  </div>
+</article>
+</li><li><article class="li sm article-2ae04d230c5cfafb05b5157af75611f2">
+  <div class="header-wrapper">
+    <a href="https://riston.github.io/post/automate-svg-export/" class="thumbnail" title="Automating your SVG export"></a>
+    <header class="article-header">
+      <div class="clearfix">
+        <h2 class="title"><a href="https://riston.github.io/post/automate-svg-export/">Automating your SVG export</a></h2>
+        <ul class="p-facts">
+          <li><time datetime="2016-08-28T17:46:41JST">Aug 28, 2016</time></li>
           <li><a href="https://riston.github.io/post/">post</a></li>
           
         </ul>
