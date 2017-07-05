@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Headless on Risto&#39;s magic stuff</title>
+    <link>https://riston.github.io/tags/headless/</link>
+    <description>Recent content in Headless on Risto&#39;s magic stuff</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 05 Jul 2017 23:30:32 +0300</lastBuildDate>
+    
+	<atom:link href="https://riston.github.io/tags/headless/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Data scraping with headless Chrome</title>
+      <link>https://riston.github.io/post/headless-chrome-scrape/</link>
+      <pubDate>Wed, 05 Jul 2017 23:30:32 +0300</pubDate>
+      
+      <guid>https://riston.github.io/post/headless-chrome-scrape/</guid>
+      <description>With the recent years, the JavaScript language adoption has skyrocketed and it&amp;rsquo;s hard to find web pages which are not using a single line of JavaScript. Many sites have converted from the traditional model of server side rendered pages to Single Page Applications(SPA). Which means that traditional web data mining, scrapers tools do not work with the SPA applications or do not give the expected results due to the dynamic nature.</description>
+    </item>
+    
+  </channel>
+</rss>
