@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://riston.github.io/post/puppeteer-chrome-scrape/</loc>
+    <lastmod>2017-10-26T15:00:41+03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://riston.github.io/post/headless-chrome-scrape/</loc>
     <lastmod>2017-07-05T23:30:32+03:00</lastmod>
   </url>
@@ -47,7 +52,7 @@
   
   <url>
     <loc>https://riston.github.io/tags/chrome/</loc>
-    <lastmod>2017-07-05T23:30:32+03:00</lastmod>
+    <lastmod>2017-10-26T15:00:41+03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -59,13 +64,19 @@
   
   <url>
     <loc>https://riston.github.io/tags/headless/</loc>
-    <lastmod>2017-07-05T23:30:32+03:00</lastmod>
+    <lastmod>2017-10-26T15:00:41+03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://riston.github.io/tags/heroku/</loc>
+    <lastmod>2017-10-26T15:00:41+03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://riston.github.io/tags/lambda/</loc>
-    <lastmod>2016-09-11T15:00:41+03:00</lastmod>
+    <lastmod>2017-10-26T15:00:41+03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -77,7 +88,7 @@
   
   <url>
     <loc>https://riston.github.io/post/</loc>
-    <lastmod>2017-07-05T23:30:32+03:00</lastmod>
+    <lastmod>2017-10-26T15:00:41+03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -89,7 +100,7 @@
   
   <url>
     <loc>https://riston.github.io/</loc>
-    <lastmod>2017-07-05T23:30:32+03:00</lastmod>
+    <lastmod>2017-10-26T15:00:41+03:00</lastmod>
     <priority>0</priority>
   </url>
   

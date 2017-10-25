@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Headless on Risto&#39;s magic stuff</title>
-    <link>https://riston.github.io/tags/headless/</link>
-    <description>Recent content in Headless on Risto&#39;s magic stuff</description>
+    <title>Heroku on Risto&#39;s magic stuff</title>
+    <link>https://riston.github.io/tags/heroku/</link>
+    <description>Recent content in Heroku on Risto&#39;s magic stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 26 Oct 2017 15:00:41 +0300</lastBuildDate>
     
-	<atom:link href="https://riston.github.io/tags/headless/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://riston.github.io/tags/heroku/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,15 +19,6 @@
       <guid>https://riston.github.io/post/puppeteer-chrome-scrape/</guid>
       <description>Great news from Google, there is now an official Google Chrome Headless library called Puppeteer. In the first Chrome headless blog post, we used the CDP interface library which is quite a low-level interaction for Chrome. In this post, we go through some of the cons and pros of using Puppeteer.
 Puppeteer allows a higher level to control the headless Chrome, it has better and easier to understand API. By installing Puppeteer package you also download separate Chrome instance(~71Mb Mac, ~90Mb Linux, ~110Mb Win.</description>
-    </item>
-    
-    <item>
-      <title>Data scraping with headless Chrome</title>
-      <link>https://riston.github.io/post/headless-chrome-scrape/</link>
-      <pubDate>Wed, 05 Jul 2017 23:30:32 +0300</pubDate>
-      
-      <guid>https://riston.github.io/post/headless-chrome-scrape/</guid>
-      <description>With the recent years, the JavaScript language adoption has skyrocketed and it&amp;rsquo;s hard to find web pages which are not using a single line of JavaScript. Many sites have converted from the traditional model of server side rendered pages to Single Page Applications (SPA). Which means that traditional web data mining, scrapers tools do not work with the SPA applications or do not give the expected results due to the dynamic nature.</description>
     </item>
     
   </channel>
